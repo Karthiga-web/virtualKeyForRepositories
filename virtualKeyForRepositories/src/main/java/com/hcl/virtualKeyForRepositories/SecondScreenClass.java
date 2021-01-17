@@ -1,4 +1,3 @@
-
 package com.hcl.virtualKeyForRepositories;
 
 import java.io.File;
@@ -18,108 +17,121 @@ import com.hcl.util.Constants;
  *
  */
 public class SecondScreenClass {
-	static Scanner scan = new Scanner(System.in);
+static Scanner scan = new Scanner(System.in);
 
-	protected static void secondOptionScreenMethod() {
-		System.out.println(Constants.SECOND_SCREEN_TEXT);
-		String option = scan.nextLine();
-		switch (option) {
-		case "1":
-			addFileMethod();
-			secondOptionScreenMethod();
-			break;
-		case "2":
-			deleteFileMethod();
-			secondOptionScreenMethod();
-			break;
-		case "3":
-			searchDirectory();
-			secondOptionScreenMethod();
-			break;
-		case "4":
-			// As static method, can be called with class name
-			WelcomeScreenClass.welcomeScreenMethod();
-			break;
-		default:
-			System.out.println(Constants.INVALID_OPTION);
-			secondOptionScreenMethod();
-			break;
-		}
-	}
+protected static void secondOptionScreenMethod() {
+System.out.println(Constants.SECOND_SCREEN_TEXT);
+// getting the option to proceed
+String option = scan.nextLine();
+switch (option) {
+case "1":
+// Adding the file to the virtual repository
+addFileMethod();
+// For showing second user interaction screen
+secondOptionScreenMethod();
+break;
+case "2":
+// Deleting the file from the virtual repository
+deleteFileMethod();
+// For showing second user interaction screen
+secondOptionScreenMethod();
+break;
+case "3":
+// Searching the file in the virtual repository
+searchDirectory();
+// For showing second user interaction screen
+secondOptionScreenMethod();
+break;
+case "4":
+// As static method, can be called with class name
+// For showing first user interaction screen
+WelcomeScreenClass.welcomeScreenMethod();
+break;
+default:
+System.out.println(Constants.INVALID_OPTION);
+// For showing second user interaction screen
+secondOptionScreenMethod();
+break;
+}
+}
 
-	public static void searchDirectory() {
-		int temporary = 0;
-		System.out.println("Enter the filename:");
-		String filename = scan.nextLine();
-		File dir = new File(Constants.MY_DIRECTORY_NAME);
-		temporary = search(dir, filename);
-		if (temporary == 0) {
-			System.out.println(Constants.NO_FILES_AVAILABLE);
-		}
-	}
+public static void searchDirectory() {
+// ASking for filename
+System.out.println(Constants.FILENAME);
+String filename = scan.nextLine();
+// Going to virtual repository path
+File dir = new File(Constants.MY_DIRECTORY_NAME);
+//creating a list to store files if found
+List<String> result = new ArrayList<String>();
+// Searching the virtual repository
+result = search(result, dir, filename);
+if (result.size() == 0) {
+System.out.println(Constants.NO_FILES_AVAILABLE);
+} else {
+System.out.println(Constants.FILE_EXISTS);
+}
+}
 
-	private static int search(File file, String filename) {
-		int temporary = 0;
-		List<String> result = new ArrayList<String>();
-		try {
-			for (File temp : file.listFiles()) {
-				if (temp.isDirectory()) {
-					search(temp, filename);
-				} else {
-					if ((filename.toLowerCase()).equals(temp.getName().toLowerCase())) {
-						result.add(temp.getAbsoluteFile().toString());
-					}
-				}
-			}
-			int count = result.size();
-			if (count == 0) {
-			} else {
-				for (String matched : result) {
-					System.out.println("Found : " + matched);
-					temporary++;
-				}
-			}
-			return temporary;
-		} catch (Exception e) {
-			System.out.println("Sorry! File cannot be searched!");
-		}
-		return temporary;
-	}
+private static List<String> search(List<String> result, File file, String filename) {
+try {
+for (File temp : file.listFiles()) {
+// Searching in each directory in virtual repository
+if (temp.isDirectory()) {
+search(result, temp, filename);
+} else {
+// Checking for case sensitivity
+if ((filename.toLowerCase()).equals(temp.getName().toLowerCase())) {
+result.add(temp.getAbsoluteFile().toString());
+}
+}
+}
+} catch (Exception e) {
+System.out.println(Constants.FILE_CANNOT_BE_SEARCHED);
+}
+return result;
+}
 
-	private static void deleteFileMethod() {
-		File tempDirectory = new File(Constants.MY_DIRECTORY_NAME);
-		System.out.println("Enter the filename:");
-		String filename = scan.nextLine();
-		File file = new File(tempDirectory.getAbsolutePath() + File.separator + filename);
-		if (file.delete()) {
-			System.out.println(Constants.FILE_DELETED);
-		} else {
-			System.out.println(Constants.FILE_DELETE_FAIL);
-		}
-	}
+private static void deleteFileMethod() {
+File tempDirectory = new File(Constants.MY_DIRECTORY_NAME);
+// ASking for filename
+System.out.println(Constants.FILENAME);
+String filename = scan.nextLine();
+File file = new File(tempDirectory.getAbsolutePath() + File.separator + filename);
+try {
+if (file.delete()) {
+System.out.println(Constants.FILE_DELETED);
+} else {
+System.out.println(Constants.FILE_DELETE_FAIL);
+}
+}catch(Exception e) {
+System.out.println(e.getMessage());
+}
 
-	private static void addFileMethod() {
-		System.out.println(Constants.PROVIDE_PATH);
-		String filePath = scan.nextLine();
-		try {
-			Path path = Paths.get(filePath);
-			if (!Files.exists(path)) {
-				System.out.println(Constants.NO_FILE);
-				return;
-			}
-			File tempDirectory = new File(Constants.MY_DIRECTORY_NAME);
-			String newFilePath = tempDirectory.getAbsolutePath() + File.separator + path.getFileName();
-			int inc = 0;
-			while (Files.exists(Paths.get(newFilePath))) {
-				inc++;
-				newFilePath = tempDirectory.getAbsolutePath() + File.separator + inc + "_" + path.getFileName();
-			}
-			Files.copy(path, Paths.get(newFilePath));
-			System.out.println(path.getFileName() + Constants.FILE_ADDED);
-		} catch (IOException e) {
-			System.out.println("Unable to add file! Invalid Path entered!");
-		} catch (InvalidPathException i) {
-			System.out.println("Unable to add file! Invalid Path entered!");
-		}
-	}
+}
+
+private static void addFileMethod() {
+System.out.println(Constants.PROVIDE_PATH);
+// ASking for filepath
+String filePath = scan.nextLine();
+try {
+Path path = Paths.get(filePath);
+if (!Files.exists(path)) {
+System.out.println(Constants.NO_FILE);
+return;
+}
+File tempDirectory = new File(Constants.MY_DIRECTORY_NAME);
+String newFilePath = tempDirectory.getAbsolutePath() + File.separator + path.getFileName();
+int inc = 0;
+while (Files.exists(Paths.get(newFilePath))) {
+inc++;
+newFilePath = tempDirectory.getAbsolutePath() + File.separator + inc + "_" + path.getFileName();
+}
+Files.copy(path, Paths.get(newFilePath));
+System.out.println(path.getFileName() + Constants.FILE_ADDED);
+} catch (IOException e) {
+System.out.println(Constants.INVALID_PATH);
+} catch (InvalidPathException i) {
+System.out.println(Constants.INVALID_PATH);
+}
+}
 }
