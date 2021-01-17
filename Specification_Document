@@ -1,0 +1,89 @@
+----------------------------------------------------------------------------------------------------
+Project: Lockedme.com
+Developed by: Karthiga Gujuluva Ravichandran
+Email: (karthiga.ravic@hcl.com)
+Created on Date: 01/17/2021
+----------------------------------------------------------------------------------------------------
+Prototype:
+The prototype of Lockedme.com consists of a welcome screen, first and second user interaction screen with functionalities in each screen. The user interaction will be via a command line and the final Lockedme.com project will be developed in various sprints based this prototype. The prototype explains the functionalities and format of the final project. 
+Sprint Plan:
+Lockedme.com project is divided into 3 sprints. Each sprint consists of 1 week of time. The tasks achieved in the sprints are given below:
+Sprint 1: 
+Time allocated for this sprint is 40 hours. The tasks involved in this sprint are:
+Tasks:
+1 – Development of Welcome screen, First User Interaction screen, Second User Interaction Screen.
+2 - Development of virtual repository to store files.
+3 – Development of First screen functionalities which are exiting the application and displaying all files in the virtual repository.
+4 – Development of add, delete and search functionalities for adding, deleting and searching the files in the virtual repository which user requests.
+5 – Creation of separate files for storing error messages, user request messages, display messages.
+6 – Collaborating all the functionalities from the Welcome screen and creating navigation flow.
+7 - Commenting on the code for better usage
+Sprint 2:
+Time allocated for this sprint is 40 hours.The tasks involved in this sprint are:
+Tasks:
+1 – Displaying the files in ascending order for display option using sorting algorithm
+2 – Displaying all the files from the sub directories as well in ascending order.
+3 – For search process, creating an algorithm to search in multiple subdirectories in the main virtual repository.
+4 – Handling all the exceptions that may arise from input, search, delete, add operations.
+5 – Development of alternate messages if the user gives incorrect inputs.
+6 – Creation of username and password for the security of the application in the welcome screen as an enhancement.
+7 – Usage of recursive algorithms to enhance the iterations.
+
+Sprint 3:
+Time allocated for this sprint is 40 hours. The tasks involved in this sprint are:	
+Tasks:
+1 – Fixing the bugs from the previous sprints.
+2 -  Development of enhancements like developing of better UI, alignment, preventing code redundancy, increasing performance using streams, lambda and regex expressions.
+3 – Creating custom exceptions in case of unmanaged exceptions.
+4 – Using interfaces, exceptions, abstract classes, inheritance and suitable sorting and searching algorithms to enhance the application.
+5 – Commenting on the code for better usage
+6 – Usage of regex expression to check user has given filename or file path and extracting the name or path from user input for process.
+7 – Creation of documentation and JUnit tests for the project.
+
+
+Phase 1 End Project: Virtual Key for Repositories - Link
+https://github.com/Karthiga-web/virtualKeyForRepositories.git is the repository link for my Lockedme.com project in GitHub.	
+Algorithm:
+1.	Display the welcome screen with developer details, name of the project etc.
+2.	Display the first user interaction screen with options to navigate and to do operations.
+3.	First option is to display all the files in the existing virtual repository, second option is to display the second user interaction screen and third option to exit the application.
+4.	Ask the user to enter an option to proceed.
+5.	If the user enters correct option, proceed. Else, display an error message.
+6.	If the user chooses the first option, display all the files in the existing virtual repository in ascending order.
+7.	The files from the sub-folders are collected and displayed. 
+8.	Stream and Sorted methods are used to sort the files in ascending order.
+9.	The first user interaction screen again appears for the user to proceed.
+10.	If the user chooses second option, then display the second user interaction screen that allows the user to do add, search, delete operations.
+11.	This screen has 4 options, 1 -  to add files to the existing virtual repository, 2 – to delete files from the existing virtual repository, 3 – to search files in the existing virtual repository and 4 – to navigate back to the first user interaction screen.
+12.	If the user chooses the 1st option, then ask the user to enter the file path of the file to be added.
+13.	The file is added to the existing virtual repository and message is displayed that file is added.
+14.	If user enter wrong file name or path, then error message is displayed.
+15.	Again second user interaction screen is displayed for the user to proceed.
+16.	If the user chooses 2nd option, then ask the user to enter the filename to delete.
+17.	The file is deleted from the existing virtual repository and message is displayed that file is deleted.
+18.	If user enter wrong file name, then error message is displayed.
+19.	Again second user interaction screen is displayed for the user to proceed.
+20.	If the user chooses 3rd option, then ask the user to enter the filename to search.
+21.	The file is searched in the existing virtual repository and message is displayed that file is found if file exists.
+22.	If file does not exist, then file does not exists message is displayed.
+23.	If user enter wrong file name, then error message is displayed.
+24.	If the user chooses 4th option, then the first user interaction screen is displayed for the user to proceed.
+25.	If the user enters correct option, proceed. Else, display an error message.
+26.	If the user chooses third option, a message is displayed thanking the user for using the application.
+27.	A separate class is created for storing all the constants for better usage and code redundancy.
+Java Concepts Involved in the project:
+1.	Classes
+2.	Exception Handling
+3.	Data Structures and Algorithms
+4.	Packages
+5.	File Handling
+6.	Stream
+7.	Array List
+8.	List	
+9.	Scanner Class
+Data Structures Involved in the project:
+Searching algorithm – Linear Search
+Sorting algorithm – Stream. Sorted() method which uses Tim Sort algorithm
+Complexity – Tim Sort - O (n log (n)) 
+Conclusion:
+Lockeme.com application does not crash for incorrect inputs or any discrepancies caused by the user. It has better performance as it uses best sorting and searching algorithms. It has reused most of its code by using constants for messages errors displayed. It uses streams, regex expressions, lambda expressions for better performance. It has better UI, alignment and secure.
